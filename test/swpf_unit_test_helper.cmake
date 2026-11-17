@@ -14,7 +14,9 @@ message(STATUS "Unit test sources to build: '${UNIT_TEST_PRJ_FILES_LIST}'")
 
 # Set before Catch2 is configured: a fetched Catch2 names its libraries by build type.
 set(CMAKE_BUILD_TYPE Debug)
-set(FP_LIBRARY_TYPE STATIC CACHE STRING "Library type for unit tests" FORCE)
+if(NOT DEFINED FP_LIBRARY_TYPE)
+    set(FP_LIBRARY_TYPE STATIC CACHE STRING "Library type for unit tests")
+endif()
 
 Include(FetchContent)
 
